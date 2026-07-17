@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>kyarucute</title>
-  <!-- Подключение шрифта Playfair Display -->
+  <title>Шесть звезд</title>
+  <!-- Подключение шрифта Playfair Display для нижнего текста -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -18,55 +18,85 @@
 
     html, body {
       height: 100%;
-      overflow: hidden; /* Запрещаем прокрутку */
+      overflow: hidden;
       font-family: 'Playfair Display', serif;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Тема по умолчанию (светлая) — будет переопределена медиа-запросом, но оставим как fallback */
+    /* Светлая тема — очень светлый песчаный фон */
     body {
-      background-color: #ffffff;
-      color: #000000;
+      background-color: #faf7f2;
+      color: #2c2c2c;
     }
 
     /* Темная тема при предпочтении пользователя */
     @media (prefers-color-scheme: dark) {
       body {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: #1e1e1e;
+        color: #e8e4dc;
       }
-      /* дополнительно, если нужно изменить цвет акцентов — оставляем как есть */
     }
 
     /* Основной контейнер на весь экран */
     .site-wrapper {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       height: 100vh;
       width: 100vw;
-      padding: 2rem 2.5rem;
+      padding: 1.2rem 1.8rem;
       transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
     }
 
-    /* Хедер: слева */
-    .header {
-      font-size: clamp(2.2rem, 10vw, 4.8rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.1;
-      text-transform: lowercase; /* чтобы соответствовало "kyarucute.ru" */
+    /* Центральные звезды — шесть штук в ряд, маленькие, почти невидимые */
+    .center-stars {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(2.5rem, 8vw, 6rem); /* заметно меньше */
+      color: #d6cdc0;
+      opacity: 0.12;
+      user-select: none;
+      pointer-events: none;
+      transition: color 0.3s ease, opacity 0.3s ease;
+      line-height: 1;
+      text-align: center;
+      font-family: 'Times New Roman', serif;
+      filter: blur(0.5px);
+      letter-spacing: 0.15em;
+      /* В ряд — убираем grid, используем обычный flex */
+      display: flex;
+      flex-direction: row;
+      gap: 0.15rem;
+      white-space: nowrap;
     }
 
-    /* Нижняя часть: слева, с анимированными точками */
+    /* В темной теме делаем звезды чуть заметнее */
+    @media (prefers-color-scheme: dark) {
+      .center-stars {
+        color: #3a3a3a;
+        opacity: 0.15;
+      }
+    }
+
+    /* Нижняя часть — "Тут скоро что-то появится..." + точки */
     .footer-message {
-      font-size: clamp(1.2rem, 5vw, 2.4rem);
+      position: absolute;
+      bottom: 1.2rem;
+      left: 1.8rem;
+      font-size: clamp(0.65rem, 2vw, 1rem);
       font-weight: 400;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       display: flex;
       align-items: baseline;
-      gap: 0.1rem;
-      flex-wrap: wrap; /* на случай узких экранов */
+      gap: 0.05rem;
+      flex-wrap: wrap;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      z-index: 2;
     }
 
     .footer-message .static-text {
@@ -75,108 +105,84 @@
 
     .dots {
       display: inline-block;
-      min-width: 2.2rem;  /* чтобы точки не сдвигали текст при изменении */
+      min-width: 1.2rem;
       text-align: left;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      transition: opacity 0.2s;
-    }
-
-    /* Дополнительно — убираем выделение, делаем поведение как у текста */
-    .dots {
+      font-weight: 500;
+      letter-spacing: 0.12em;
       user-select: none;
+      transition: opacity 0.15s ease;
     }
 
-    /* Небольшая адаптивность для очень маленьких экранов */
+    /* Очень маленькие экраны */
     @media (max-width: 480px) {
       .site-wrapper {
-        padding: 1.5rem 1.2rem;
+        padding: 0.8rem 1rem;
+      }
+      .footer-message {
+        bottom: 0.8rem;
+        left: 1rem;
       }
       .dots {
-        min-width: 1.6rem;
+        min-width: 0.9rem;
+      }
+      .center-stars {
+        font-size: clamp(1.8rem, 10vw, 3.5rem);
+        letter-spacing: 0.1em;
+        gap: 0.1rem;
       }
     }
 
-    /* Для красоты и сохранения пропорций */
-    .footer-message .static-text {
-      margin-right: 0.2rem;
-    }
-
-    /* Анимация для плавного изменения точек — реализована через JS, 
-       но добавим небольшой эффект перехода для плавности */
-    .dots {
-      transition: opacity 0.15s ease;
+    /* Адаптация цветов для темной темы */
+    @media (prefers-color-scheme: dark) {
+      .footer-message {
+        color: #c8c0b8;
+      }
     }
   </style>
 </head>
 <body>
   <div class="site-wrapper">
-    <!-- Верхний левый угол: kyarucute.ru -->
-    <div class="header">kyarucute.ru</div>
-
+    <!-- 
+      ═══════════════════════════════════════════════════════════════
+      НАСТРОЙКА ЗВЕЗД:
+      • Пустая звезда: ✧
+      • Заполненная звезда: ✦
+    ═══════════════════════════════════════════════════════════════
+    -->
+    <div class="center-stars">
+      ✧✧✧✧✧✦
+    </div>
     <!-- Нижний левый угол: "Тут скоро что-то появится..." + точки -->
     <div class="footer-message">
       <span class="static-text">Тут скоро что-то появится</span>
-      <span class="dots" id="dots">...</span>
+      <span class="dots" id="dots">.</span>
     </div>
   </div>
 
   <script>
     (function() {
-      // Элемент для отображения точек
       const dotsElement = document.getElementById('dots');
 
-      // Варианты состояний точек: от 1 до 3 точек
-      const dotStates = ['...', '..', '.', '']; // пустая строка для эффекта "исчезновения" (опционально)
-      // Используем три основных состояния: ... , .. , .
-      // Чтобы было разнообразнее, добавим ещё и вариант с одной точкой, но можно сделать цикл из трёх.
-      // Для большей плавности и соответствия "то меняющейся точкой" сделаем последовательность: ... -> .. -> . -> ... 
-      // Можно также добавить "" (пусто) для эффекта, но по ТЗ "меняющаяся точка" — лучше три состояния.
-      const states = ['...', '..', '.', '...', '..', '.']; // повтор для непрерывности
-      
+      const states = ['.', '..', '...'];
       let currentIndex = 0;
       let intervalId = null;
 
-      // Функция обновления текста точек
       function updateDots() {
         if (!dotsElement) return;
-        // Берём следующее состояние по кругу
-        const nextState = states[currentIndex % states.length];
-        dotsElement.textContent = nextState;
+        dotsElement.textContent = states[currentIndex % states.length];
         currentIndex = (currentIndex + 1) % states.length;
       }
 
-      // Запускаем интервал смены точек (каждые 500 мс — приятная скорость)
       function startAnimation() {
         if (intervalId) clearInterval(intervalId);
-        // Устанавливаем начальное состояние ( ... )
-        dotsElement.textContent = '...';
-        currentIndex = 1; // чтобы следующим было '..' (индекс 1 в states)
+        dotsElement.textContent = '.';
+        currentIndex = 1;
         intervalId = setInterval(updateDots, 500);
       }
 
-      // Останавливаем анимацию (если понадобится)
-      function stopAnimation() {
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
-        }
-      }
-
-      // Запускаем анимацию при загрузке
       startAnimation();
 
-      // (Опционально) перезапуск анимации при видимости — но не обязательно
-      // Также можно добавить очистку интервала при уходе со страницы, но для простоты оставим
-
-      // Обработчик изменения темы не требуется — это делает CSS через prefers-color-scheme.
-      // Если нужно дополнительно реагировать на изменение темы в рантайме (например, при ручном переключении),
-      // можно использовать MediaQueryList, но по ТЗ "зависимости от темы браузера" — CSS достаточно.
-
-      // Дополнительно: чтобы быть уверенным, что при изменении темы на лету (в devtools) 
-      // цвета меняются корректно — уже реализовано через CSS.
-      // Небольшой бонус: при переключении темы вручную в браузере, фон меняется мгновенно.
-      console.log('Сайт kyarucute.ru загружен. Тема определяется системой.');
+      console.log('Шесть звезд в ряд — редактируемые, уменьшенные');
     })();
   </script>
 </body>
