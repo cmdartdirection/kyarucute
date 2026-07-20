@@ -35,7 +35,6 @@
       }
     }
 
-    /* ЗАСТАВКА */
     .splash-screen {
       position: fixed;
       top: 0;
@@ -44,11 +43,10 @@
       height: 100vh;
       background-color: #faf7f2;
       z-index: 1000;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -63,15 +61,20 @@
       pointer-events: none;
     }
 
-    /* ЗВЁЗДЫ НА ЗАСТАВКЕ */
+    .splash-stars-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
     .splash-stars {
       display: flex;
       flex-direction: row;
       gap: 0.6rem;
       align-items: center;
       justify-content: center;
-      position: relative;
-      margin-bottom: 2.5rem;
     }
 
     .splash-star {
@@ -95,27 +98,26 @@
     @keyframes twinkle {
       0% { 
         opacity: 0.06; 
-        transform: scale(0.85) rotate(0deg);
+        transform: scale(0.85);
         filter: blur(1px);
       }
       30% {
         opacity: 0.5;
-        transform: scale(1.0) rotate(2deg);
+        transform: scale(1.0);
         filter: blur(0.4px);
       }
       60% {
         opacity: 0.25;
-        transform: scale(0.92) rotate(-1deg);
+        transform: scale(0.92);
         filter: blur(0.7px);
       }
       100% { 
         opacity: 0.6; 
-        transform: scale(1.05) rotate(3deg);
+        transform: scale(1.05);
         filter: blur(0.3px);
       }
     }
 
-    /* ПРОГРЕСС-БАР ЗАГРУЗКИ */
     .progress-wrapper {
       position: absolute;
       bottom: 2.5rem;
@@ -171,7 +173,6 @@
       }
     }
 
-    /* ОСНОВНОЙ КОНТЕНТ */
     .main-content {
       opacity: 0;
       transition: opacity 1s ease;
@@ -181,7 +182,7 @@
       align-items: center;
       height: 100vh;
       width: 100vw;
-      padding: 1.2rem 0;
+      padding: 1.2rem 1.8rem;
       position: relative;
       overflow: hidden;
       background-color: #faf7f2;
@@ -197,7 +198,6 @@
       opacity: 1;
     }
 
-    /* ШУМ */
     .noise-overlay {
       position: absolute;
       top: -50%;
@@ -226,79 +226,6 @@
       }
     }
 
-    /* ПОЛОСЫ */
-    .bars-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .bar-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      height: 100%;
-      flex: 1;
-      position: relative;
-    }
-
-    .bar {
-      width: 100%;
-      min-height: 1px;
-      background-color: #d6cdc0;
-      opacity: 0.12;
-      border-radius: 0;
-      height: 0%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      transition: height 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
-
-    .bar.grow {
-      height: 2%; /* будет переопределено через JS, но это начальное значение */
-    }
-
-    .bar-label {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Major Mono Display', monospace;
-      font-size: clamp(0.5rem, 0.9vw, 0.8rem);
-      color: #d6cdc0;
-      opacity: 0;
-      letter-spacing: 0.05em;
-      user-select: none;
-      z-index: 3;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-    .bar-label.visible {
-      opacity: 0.15;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .bar {
-        background-color: #4a4a4a;
-        opacity: 0.15;
-      }
-      .bar-label {
-        color: #4a4a4a;
-      }
-    }
-
-    /* ТАЙМЕР */
     .timer-container {
       position: relative;
       z-index: 2;
@@ -319,21 +246,39 @@
       transition: opacity 0.3s ease;
       text-shadow: none;
       user-select: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.05em;
+    }
+
+    .timer-digit {
+      display: inline-block;
+      min-width: 0.6em;
+      text-align: center;
+      color: #d6cdc0;
+    }
+
+    .timer-separator {
+      opacity: 0.5;
+      margin: 0 0.05em;
+      font-weight: 400;
+      user-select: none;
+      color: #d6cdc0;
     }
 
     @media (prefers-color-scheme: dark) {
       .timer-display {
         color: #4a4a4a;
       }
+      .timer-digit {
+        color: #4a4a4a;
+      }
+      .timer-separator {
+        color: #4a4a4a;
+      }
     }
 
-    .timer-display .separator {
-      opacity: 0.15;
-      margin: 0 0.1em;
-      font-weight: 400;
-    }
-
-    /* ИКОНКА тг */
     .telegram-link {
       position: absolute;
       bottom: 1.8rem;
@@ -344,7 +289,6 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       cursor: pointer;
       text-decoration: none;
-      pointer-events: auto;
     }
 
     .telegram-link:hover {
@@ -391,24 +335,22 @@
         width: clamp(100px, 40vw, 200px);
         bottom: 1.8rem;
       }
-      .bar-label {
-        font-size: clamp(0.4rem, 1.2vw, 0.6rem);
-        bottom: 0.8rem;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- ЗАСТАВКА -->
   <div class="splash-screen" id="splashScreen">
-    <div class="splash-stars" id="splashStars">
-      <span class="splash-star">✧</span>
-      <span class="splash-star">✧</span>
-      <span class="splash-star">✧</span>
-      <span class="splash-star">✧</span>
-      <span class="splash-star">✧</span>
-      <span class="splash-star">✧</span>
+    <div class="splash-stars-wrapper">
+      <div class="splash-stars" id="splashStars">
+        <span class="splash-star">✧</span>
+        <span class="splash-star">✧</span>
+        <span class="splash-star">✧</span>
+        <span class="splash-star">✧</span>
+        <span class="splash-star">✧</span>
+        <span class="splash-star">✧</span>
+      </div>
     </div>
+
     <div class="progress-wrapper">
       <div class="progress-percent" id="progressPercent">0%</div>
       <div class="progress-container">
@@ -417,21 +359,13 @@
     </div>
   </div>
 
-  <!-- ОСНОВНОЙ КОНТЕНТ -->
   <div class="main-content" id="mainContent">
-    <!-- Шум -->
     <div class="noise-overlay"></div>
-    <div class="bars-container" id="barsContainer">
-    </div>
 
-    <!-- Таймер -->
     <div class="timer-container">
-      <div class="timer-display" id="timerDisplay">
-        00|00|00|00
-      </div>
+      <div class="timer-display" id="timerDisplay"></div>
     </div>
 
-    <!-- Иконка тг -->
     <a href="https://t.me/ProdByKyaru" target="_blank" class="telegram-link" id="telegramLink">
       <svg class="telegram-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
@@ -441,16 +375,13 @@
 
   <script>
     (function() {
-      // ЭЛЕМЕНТЫ
       const splashScreen = document.getElementById('splashScreen');
       const splashStars = document.querySelectorAll('.splash-star');
       const progressBar = document.getElementById('progressBar');
       const progressPercent = document.getElementById('progressPercent');
       const mainContent = document.getElementById('mainContent');
       const timerDisplay = document.getElementById('timerDisplay');
-      const barsContainer = document.getElementById('barsContainer');
 
-      // РАНДОМНЫЕ ЗАДЕРЖКИ ДЛЯ ЗВЁЗД
       function setRandomDelays(stars, minDelay = 0, maxDelay = 2.8) {
         stars.forEach(star => {
           const randomDelay = (Math.random() * (maxDelay - minDelay) + minDelay).toFixed(2);
@@ -459,95 +390,130 @@
       }
       setRandomDelays(splashStars, 0, 2.8);
 
-      // ТАЙМЕР
-      const RELEASE_DATE = new Date('2026-12-25T00:00:00+03:00');
+      // ═══════════════════════════════════════════════════════════════
+      // 🔽 УКАЖИТЕ ДАТУ ВЫХОДА ЗДЕСЬ (МОСКОВСКОЕ ВРЕМЯ) 🔽
+      // Оставьте пустые кавычки '' для рандомного режима
+      // ═══════════════════════════════════════════════════════════════
+      const RELEASE_DATE = new Date(''); // например: new Date('2026-12-25T00:00:00+03:00')
+      // ═══════════════════════════════════════════════════════════════
+
       const isReleaseDateValid = RELEASE_DATE && !isNaN(RELEASE_DATE.getTime()) && RELEASE_DATE.getTime() > Date.now();
 
+      // ─── СОЗДАНИЕ ЦИФР ТАЙМЕРА ───
+      const digitElements = [];
+
+      function buildTimerStructure() {
+        timerDisplay.innerHTML = '';
+        digitElements.length = 0;
+
+        const blocks = [
+          { label: 'days', count: 2 },
+          { label: 'hours', count: 2 },
+          { label: 'minutes', count: 2 },
+          { label: 'seconds', count: 2 }
+        ];
+
+        blocks.forEach((block, blockIndex) => {
+          for (let i = 0; i < block.count; i++) {
+            const span = document.createElement('span');
+            span.className = 'timer-digit';
+            span.textContent = '0';
+            timerDisplay.appendChild(span);
+            digitElements.push(span);
+          }
+
+          if (blockIndex < blocks.length - 1) {
+            const sep = document.createElement('span');
+            sep.className = 'timer-separator';
+            sep.textContent = '|';
+            timerDisplay.appendChild(sep);
+          }
+        });
+      }
+
+      buildTimerStructure();
+
+      // ─── ОБНОВЛЕНИЕ ЦИФР ───
+      function updateDigits(newDigits) {
+        const digitArray = String(newDigits).padStart(8, '0').split('').map(Number);
+        
+        digitElements.forEach((el, index) => {
+          const newVal = digitArray[index] || 0;
+          el.textContent = newVal;
+        });
+      }
+
+      // ─── ФОРМАТИРОВАНИЕ ───
       function formatTime(days, hours, minutes, seconds) {
         const clampedDays = Math.min(days, 99);
-        return `${String(clampedDays).padStart(2, '0')}|${String(hours).padStart(2, '0')}|${String(minutes).padStart(2, '0')}|${String(seconds).padStart(2, '0')}`;
+        return `${String(clampedDays).padStart(2, '0')}${String(hours).padStart(2, '0')}${String(minutes).padStart(2, '0')}${String(seconds).padStart(2, '0')}`;
       }
 
       function getRandomTimer() {
-        const days = Math.floor(Math.random() * 99);
+        const days = Math.floor(Math.random() * 100);
         const hours = Math.floor(Math.random() * 24);
         const minutes = Math.floor(Math.random() * 60);
         const seconds = Math.floor(Math.random() * 60);
         return { days, hours, minutes, seconds };
       }
 
+      // ─── ПОЛУЧЕНИЕ СЛУЧАЙНОЙ ЦИФРЫ ───
+      function getRandomDigit(block, position) {
+        let max = 9;
+        if (block === 'days') {
+          max = 9;
+        } else if (block === 'hours') {
+          max = position === 0 ? 2 : 3;
+        } else if (block === 'minutes' || block === 'seconds') {
+          max = position === 0 ? 5 : 9;
+        }
+        return Math.floor(Math.random() * (max + 1));
+      }
+
+      // ─── ОБНОВЛЕНИЕ ТАЙМЕРА ───
       function updateTimer() {
+        let newDigits = '';
+
         if (isReleaseDateValid) {
           const now = Date.now();
           let diff = RELEASE_DATE.getTime() - now;
 
           if (diff <= 0) {
             const random = getRandomTimer();
-            timerDisplay.textContent = formatTime(random.days, random.hours, random.minutes, random.seconds);
-            return;
+            newDigits = formatTime(random.days, random.hours, random.minutes, random.seconds);
+          } else {
+            const days = Math.floor(diff / 86400000);
+            diff -= days * 86400000;
+            const hours = Math.floor(diff / 3600000);
+            diff -= hours * 3600000;
+            const minutes = Math.floor(diff / 60000);
+            diff -= minutes * 60000;
+            const seconds = Math.floor(diff / 1000);
+            newDigits = formatTime(days, hours, minutes, seconds);
           }
-
-          const days = Math.floor(diff / 86400000);
-          diff -= days * 86400000;
-          const hours = Math.floor(diff / 3600000);
-          diff -= hours * 3600000;
-          const minutes = Math.floor(diff / 60000);
-          diff -= minutes * 60000;
-          const seconds = Math.floor(diff / 1000);
-
-          timerDisplay.textContent = formatTime(days, hours, minutes, seconds);
         } else {
-          const random = getRandomTimer();
-          timerDisplay.textContent = formatTime(random.days, random.hours, random.minutes, random.seconds);
+          // ─── РАНДОМНЫЙ РЕЖИМ ───
+          const blockTypes = ['days', 'days', 'hours', 'hours', 'minutes', 'minutes', 'seconds', 'seconds'];
+          let result = '';
+          blockTypes.forEach((block, index) => {
+            const position = index % 2;
+            const newDigit = getRandomDigit(block, position);
+            result += newDigit;
+          });
+          newDigits = result;
         }
+
+        updateDigits(newDigits);
       }
 
+      // ─── ЗАПУСК ТАЙМЕРА ───
       updateTimer();
-      setInterval(updateTimer, 1000);
 
-      const barPercentages = [20, 75, 0, 0, 0, 100];
+      // Замедленный интервал: 500мс для рандомного режима, 1000мс для реального
+      const intervalTime = isReleaseDateValid ? 1000 : 500;
+      setInterval(updateTimer, intervalTime);
 
-      const bars = [];
-
-      function createBars() {
-        barsContainer.innerHTML = '';
-        
-        barPercentages.forEach((percent, index) => {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'bar-wrapper';
-          
-          const bar = document.createElement('div');
-          bar.className = 'bar';
-          bar.id = `bar-${index}`;
-          bar.style.height = '0%';
-          
-          const label = document.createElement('span');
-          label.className = 'bar-label';
-          label.textContent = `${percent}%`;
-          
-          wrapper.appendChild(bar);
-          wrapper.appendChild(label);
-          barsContainer.appendChild(wrapper);
-          
-          bars.push({ bar, label, percent });
-        });
-      }
-
-      function growBars() {
-        bars.forEach((item, index) => {
-          const delay = 200 + index * 150;
-          setTimeout(() => {
-            item.bar.style.height = `${Math.max(item.percent, 1)}%`;
-            setTimeout(() => {
-              item.label.classList.add('visible');
-            }, 400);
-          }, delay);
-        });
-      }
-
-      createBars();
-
-      // ИМИТАЦИЯ ЗАГРУЗКИ
+      // ─── ИМИТАЦИЯ ЗАГРУЗКИ ───
       let progress = 0;
       const loadInterval = setInterval(() => {
         progress += 0.008 + Math.random() * 0.025;
@@ -559,10 +525,6 @@
           setTimeout(() => {
             splashScreen.classList.add('hidden');
             mainContent.classList.add('visible');
-            
-            setTimeout(() => {
-              growBars();
-            }, 400);
           }, 400);
         }
         
@@ -572,7 +534,7 @@
         
       }, 80);
 
-      console.log('Полосы вырастают снизу после загрузки, разделитель |');
+      console.log('Разделители | того же цвета, замедленный таймер');
     })();
   </script>
 </body>
