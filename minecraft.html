@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>kyarucute — заявка</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Playfair Display', serif;
+      color: #2c2c2c;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background-color: #faf7f2;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        color: #e8e4dc;
+        background-color: #1e1e1e;
+      }
+    }
+
+    .noise {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      animation: noiseMove 0.5s steps(3) infinite;
+    }
+
+    @keyframes noiseMove {
+      0% { transform: translate(0, 0); }
+      33% { transform: translate(5%, -5%); }
+      66% { transform: translate(-3%, 7%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .noise {
+        opacity: 0.06;
+      }
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      padding: 0.8rem 1.2rem 0.6rem 1.2rem;
+      z-index: 10;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      background-color: #faf7f2;
+      transition: background-color 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .header {
+        background-color: #1e1e1e;
+      }
+    }
+
+    .header-top {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .header .logo {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #8a7a6a;
+      opacity: 1;
+      text-decoration: none;
+      user-select: none;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .header .logo:hover {
+      opacity: 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .header .logo {
+        color: #b0a8a0;
+        opacity: 1;
+      }
+    }
+
+    .header-line {
+      width: 100%;
+      height: 1px;
+      background: #a89888;
+      opacity: 0.15;
+      margin-top: 0.5rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .header-line {
+        background: #8a8a8a;
+        opacity: 0.2;
+      }
+    }
+
+    .page-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100vw;
+      padding: 6rem 1.2rem 3rem 1.2rem;
+      gap: 3rem;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      gap: 1.6rem;
+      max-width: 500px;
+    }
+
+    .form-title {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: #6a5a4a;
+      opacity: 0.8;
+      user-select: none;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .form-title {
+        color: #c0b8b0;
+        opacity: 1;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .form-group input {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #6a5a4a;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(106, 90, 74, 0.15);
+      padding: 0.4rem 0 0.4rem 0;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 100%;
+    }
+
+    .form-group input:focus {
+      border-color: rgba(106, 90, 74, 0.4);
+    }
+
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .form-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .form-group input {
+        color: #c0b8b0;
+        border-bottom-color: rgba(192, 184, 176, 0.15);
+      }
+      .form-group input:focus {
+        border-bottom-color: rgba(192, 184, 176, 0.4);
+      }
+    }
+
+    .agree-text {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #6a5a4a;
+      opacity: 1;
+      margin-top: 0.2rem;
+      line-height: 1.6;
+    }
+
+    .agree-text .rules-link {
+      color: #6a5a4a;
+      opacity: 1;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(106, 90, 74, 0.15);
+      cursor: pointer;
+      transition: opacity 0.3s ease, border-color 0.3s ease;
+    }
+
+    .agree-text .rules-link:hover {
+      opacity: 1;
+      border-color: rgba(106, 90, 74, 0.4);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .agree-text {
+        color: #c0b8b0;
+        opacity: 1;
+      }
+      .agree-text .rules-link {
+        color: #c0b8b0;
+        border-color: rgba(192, 184, 176, 0.15);
+      }
+      .agree-text .rules-link:hover {
+        border-color: rgba(192, 184, 176, 0.4);
+      }
+    }
+
+    .submit-btn {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(0.8rem, 1.2vw, 1rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #6a5a4a;
+      opacity: 1;
+      background: none;
+      border: 1px solid rgba(106, 90, 74, 0.2);
+      padding: 0.6rem 2rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, border-color 0.3s ease;
+      margin-top: 0.3rem;
+      width: fit-content;
+    }
+
+    .submit-btn:hover {
+      opacity: 1;
+      border-color: rgba(106, 90, 74, 0.5);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .submit-btn {
+        color: #c0b8b0;
+        border-color: rgba(192, 184, 176, 0.2);
+      }
+      .submit-btn:hover {
+        border-color: rgba(192, 184, 176, 0.5);
+      }
+    }
+
+    .rules-side {
+      flex: 0 0 280px;
+      max-width: 280px;
+      padding-top: 0.5rem;
+      border-left: 1px solid rgba(106, 90, 74, 0.08);
+      padding-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .rules-side-title {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(0.7rem, 1vw, 0.85rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: #6a5a4a;
+      opacity: 1;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .rules-side ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      align-items: flex-start;
+    }
+
+    .rules-side ul li {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #6a5a4a;
+      opacity: 1;
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+      text-align: left;
+    }
+
+    .rules-side ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      opacity: 0.2;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .rules-side {
+        border-left-color: rgba(192, 184, 176, 0.08);
+      }
+      .rules-side-title {
+        color: #c0b8b0;
+        opacity: 1;
+      }
+      .rules-side ul li {
+        color: #c0b8b0;
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-wrapper {
+        flex-direction: column;
+        padding: 6rem 1.2rem 3rem 1.2rem;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+      .form-container {
+        max-width: 100%;
+        gap: 1.2rem;
+      }
+      .rules-side {
+        flex: 1;
+        max-width: 100%;
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(106, 90, 74, 0.08);
+        padding-top: 1.5rem;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .rules-side-title {
+        text-align: left;
+      }
+      .rules-side ul {
+        align-items: flex-start;
+      }
+      .rules-side ul li {
+        text-align: left;
+        padding-left: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 0.6rem 0.8rem 0.4rem 0.8rem;
+      }
+      .header .logo {
+        font-size: 1rem;
+      }
+      .header-line {
+        margin-top: 0.3rem;
+      }
+      .page-wrapper {
+        padding: 5rem 0.8rem 2rem 0.8rem;
+        gap: 1.5rem;
+      }
+      .form-title {
+        font-size: 1.2rem;
+      }
+      .rules-side ul li {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header class="header">
+    <div class="header-top">
+      <a href="index.html" class="logo">kyarucute.ru</a>
+    </div>
+    <div class="header-line"></div>
+  </header>
+
+  <div class="page-wrapper">
+    <div class="form-container">
+      <div class="form-title">подать заявку</div>
+
+      <form id="applicationForm" action="https://formspree.io/f/xvzeyrba" method="POST">
+        <div class="form-group">
+          <input type="text" id="nickname" name="nickname" placeholder="никнейм" required>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="license" name="license" placeholder="лицензия" required>
+        </div>
+
+        <div class="form-group">
+          <input type="number" id="age" name="age" placeholder="возраст" min="10" max="99" required>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="plans" name="plans" placeholder="что планируете делать на сервере" required>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="contact" name="contact" placeholder="контакт для связи (тг или дс)" required>
+        </div>
+        &nbsp
+        <div class="agree-text">
+          отправляя заявку вы соглашаетесь с <span class="rules-link" id="rulesScroll">правилами сервера</span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">отправить</button>
+      </form>
+    </div>
+
+    <div class="rules-side" id="rulesSide">
+      <div class="rules-side-title">правила сервера</div>
+      <ul>
+        <li>будьте уважительны к другим игрокам</li>
+        <li>запрещены читы и любые моды, дающие преимущество (кроме мини-карты)</li>
+        <li>не гриферить</li>
+        <li>не спамить в чате</li>
+        <li>не портите ландшафт бездумно</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const rulesLink = document.getElementById('rulesScroll');
+      const rulesSide = document.getElementById('rulesSide');
+
+      rulesLink.addEventListener('click', () => {
+        rulesSide.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+
+      // ─── AJAX ОТПРАВКА НА FORMSPREE ───
+      const form = document.getElementById('applicationForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        submitBtn.textContent = 'отправка...';
+        submitBtn.style.opacity = '0.5';
+        submitBtn.style.pointerEvents = 'none';
+
+        try {
+          const response = await fetch('https://formspree.io/f/xvzeyrba', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            alert('заявка отправлена!');
+            form.reset();
+            submitBtn.textContent = 'отправить';
+            submitBtn.style.opacity = '1';
+            submitBtn.style.pointerEvents = 'auto';
+          } else {
+            alert('ошибка при отправке. попробуйте позже.');
+            submitBtn.textContent = 'отправить';
+            submitBtn.style.opacity = '1';
+            submitBtn.style.pointerEvents = 'auto';
+          }
+        } catch (error) {
+          alert('ошибка при отправке. проверьте соединение.');
+          submitBtn.textContent = 'отправить';
+          submitBtn.style.opacity = '1';
+          submitBtn.style.pointerEvents = 'auto';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
