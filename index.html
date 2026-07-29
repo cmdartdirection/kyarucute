@@ -63,7 +63,6 @@
       }
     }
 
-    /* ─── ХЭДЕР ─── */
     .header {
       position: fixed;
       top: 0;
@@ -94,7 +93,7 @@
 
     .header .logo {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-size: 1.4rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #8a7a6a;
@@ -126,7 +125,6 @@
       }
     }
 
-    /* ─── СЕКЦИЯ 1: ГЛАВНАЯ ─── */
     .section-home {
       display: flex;
       justify-content: center;
@@ -146,13 +144,13 @@
 
     .center-text {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1rem, 2.5vw, 2rem);
+      font-size: 1.4rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
       opacity: 0.7;
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.8;
       user-select: none;
     }
 
@@ -188,7 +186,6 @@
       }
     }
 
-    /* ─── СЕКЦИЯ 2: ПРОЕКТЫ ─── */
     .section-projects {
       display: flex;
       flex-direction: column;
@@ -211,7 +208,7 @@
 
     .projects-title {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-size: 2.2rem;
       font-weight: 300;
       letter-spacing: 0.06em;
       color: #6a5a4a;
@@ -238,7 +235,7 @@
 
     .projects-list li {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+      font-size: 1.1rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
@@ -262,7 +259,6 @@
       }
     }
 
-    /* ─── СЕКЦИЯ 3: МАЙНКРАФТ ─── */
     .section-minecraft {
       display: flex;
       flex-direction: column;
@@ -285,7 +281,7 @@
 
     .minecraft-title {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-size: 2.2rem;
       font-weight: 300;
       letter-spacing: 0.06em;
       color: #6a5a4a;
@@ -302,7 +298,7 @@
 
     .minecraft-desc {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+      font-size: 0.95rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
@@ -321,7 +317,7 @@
 
     .minecraft-btn {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.8rem, 1.2vw, 1rem);
+      font-size: 0.85rem;
       font-weight: 300;
       letter-spacing: 0.08em;
       color: #6a5a4a;
@@ -362,7 +358,7 @@
         margin-top: 0.3rem;
       }
       .center-text {
-        font-size: 0.9rem;
+        font-size: 1rem;
         line-height: 1.8;
         padding: 0 1rem;
         opacity: 0.8;
@@ -371,10 +367,10 @@
         opacity: 1;
       }
       .projects-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
       .projects-list li {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
       }
       .section-projects {
         padding: 1.2rem 0.8rem;
@@ -385,7 +381,7 @@
         gap: 0.8rem;
       }
       .minecraft-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
       .minecraft-desc {
         font-size: 0.8rem;
@@ -396,7 +392,6 @@
 <body>
   <div class="noise"></div>
 
-  <!-- ХЭДЕР -->
   <header class="header">
     <div class="header-top">
       <span class="logo">kyarucute.ru</span>
@@ -404,15 +399,13 @@
     <div class="header-line"></div>
   </header>
 
-  <!-- СЕКЦИЯ 1: ГЛАВНАЯ -->
   <section class="section-home" id="home">
     <div class="center-text">
-      Это главная страница<br>
+      Это главная страница,<br>
       перейдите в <span class="highlight" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">Проекты</span>
     </div>
   </section>
 
-  <!-- СЕКЦИЯ 2: ПРОЕКТЫ -->
   <section class="section-projects" id="projects">
     <div class="projects-title">проекты</div>
     <ul class="projects-list">
@@ -420,7 +413,6 @@
     </ul>
   </section>
 
-  <!-- СЕКЦИЯ 3: МАЙНКРАФТ -->
   <section class="section-minecraft" id="minecraft">
     <div class="minecraft-title">майнкрафт сервер</div>
     <div class="minecraft-desc">

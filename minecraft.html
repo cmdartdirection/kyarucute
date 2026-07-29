@@ -95,7 +95,7 @@
 
     .header .logo {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-size: 1.4rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #8a7a6a;
@@ -153,7 +153,7 @@
 
     .form-title {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-size: 2.2rem;
       font-weight: 300;
       letter-spacing: 0.06em;
       color: #6a5a4a;
@@ -177,7 +177,7 @@
 
     .form-group input {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      font-size: 0.95rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
@@ -215,7 +215,7 @@
 
     .agree-text {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      font-size: 0.7rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
@@ -254,7 +254,7 @@
 
     .submit-btn {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.8rem, 1.2vw, 1rem);
+      font-size: 0.85rem;
       font-weight: 300;
       letter-spacing: 0.08em;
       color: #6a5a4a;
@@ -299,7 +299,7 @@
 
     .rules-side-title {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.7rem, 1vw, 0.85rem);
+      font-size: 0.7rem;
       font-weight: 300;
       letter-spacing: 0.06em;
       color: #6a5a4a;
@@ -320,7 +320,7 @@
 
     .rules-side ul li {
       font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+      font-size: 0.7rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: #6a5a4a;
@@ -400,10 +400,13 @@
         gap: 1.5rem;
       }
       .form-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+      }
+      .form-group input {
+        font-size: 0.85rem;
       }
       .rules-side ul li {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
       }
     }
   </style>
@@ -472,7 +475,6 @@
         rulesSide.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
 
-      // ─── AJAX ОТПРАВКА НА FORMSPREE ───
       const form = document.getElementById('applicationForm');
       const submitBtn = document.getElementById('submitBtn');
 
