@@ -20,19 +20,12 @@
       height: 100%;
       font-family: 'Playfair Display', serif;
       color: #2c2c2c;
-      transition: background-color 0.3s ease, color 0.3s ease;
       overflow-y: scroll;
       scroll-behavior: smooth;
     }
 
     body::-webkit-scrollbar {
       display: none;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        color: #e8e4dc;
-      }
     }
 
     .noise {
@@ -57,12 +50,6 @@
       100% { transform: translate(0, 0); }
     }
 
-    @media (prefers-color-scheme: dark) {
-      .noise {
-        opacity: 0.06;
-      }
-    }
-
     .header {
       position: fixed;
       top: 0;
@@ -75,13 +62,6 @@
       align-items: center;
       flex-direction: column;
       background-color: #faf7f2;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .header {
-        background-color: #1e1e1e;
-      }
     }
 
     .header-top {
@@ -103,26 +83,12 @@
       cursor: default;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .header .logo {
-        color: #b0a8a0;
-        opacity: 0.7;
-      }
-    }
-
     .header-line {
       width: 100%;
       height: 1px;
       background: #a89888;
       opacity: 0.15;
       margin-top: 0.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .header-line {
-        background: #8a8a8a;
-        opacity: 0.2;
-      }
     }
 
     .section-home {
@@ -133,13 +99,6 @@
       width: 100vw;
       flex-shrink: 0;
       background-color: #faf7f2;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .section-home {
-        background-color: #1e1e1e;
-      }
     }
 
     .center-text {
@@ -152,13 +111,6 @@
       text-align: center;
       line-height: 1.8;
       user-select: none;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .center-text {
-        color: #c0b8b0;
-        opacity: 0.6;
-      }
     }
 
     .center-text .highlight {
@@ -176,16 +128,6 @@
       border-color: rgba(106, 90, 74, 0.4);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .center-text .highlight {
-        color: #c0b8b0;
-        border-color: rgba(192, 184, 176, 0.15);
-      }
-      .center-text .highlight:hover {
-        border-color: rgba(192, 184, 176, 0.4);
-      }
-    }
-
     .section-projects {
       display: flex;
       flex-direction: column;
@@ -197,13 +139,6 @@
       padding: 2rem 1.2rem;
       gap: 0.8rem;
       background-color: #fcf9f5;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .section-projects {
-        background-color: #262626;
-      }
     }
 
     .projects-title {
@@ -215,13 +150,6 @@
       opacity: 0.6;
       user-select: none;
       margin-bottom: 0.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .projects-title {
-        color: #c0b8b0;
-        opacity: 0.2;
-      }
     }
 
     .projects-list {
@@ -249,16 +177,6 @@
       opacity: 0.8;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .projects-list li {
-        color: #c0b8b0;
-        opacity: 0.15;
-      }
-      .projects-list li:hover {
-        opacity: 0.4;
-      }
-    }
-
     .section-minecraft {
       display: flex;
       flex-direction: column;
@@ -270,13 +188,6 @@
       padding: 2rem 1.2rem;
       gap: 1rem;
       background-color: #faf7f2;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .section-minecraft {
-        background-color: #1e1e1e;
-      }
     }
 
     .minecraft-title {
@@ -289,13 +200,6 @@
       user-select: none;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .minecraft-title {
-        color: #c0b8b0;
-        opacity: 0.2;
-      }
-    }
-
     .minecraft-desc {
       font-family: 'Cutive Mono', 'Courier New', monospace;
       font-size: 0.95rem;
@@ -306,13 +210,6 @@
       max-width: 600px;
       text-align: center;
       line-height: 1.8;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .minecraft-desc {
-        color: #c0b8b0;
-        opacity: 0.2;
-      }
     }
 
     .minecraft-btn {
@@ -335,16 +232,6 @@
     .minecraft-btn:hover {
       opacity: 0.9;
       border-color: rgba(106, 90, 74, 0.5);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .minecraft-btn {
-        color: #c0b8b0;
-        border-color: rgba(192, 184, 176, 0.2);
-      }
-      .minecraft-btn:hover {
-        border-color: rgba(192, 184, 176, 0.5);
-      }
     }
 
     @media (max-width: 480px) {

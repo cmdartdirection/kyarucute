@@ -20,7 +20,6 @@
       height: 100%;
       font-family: 'Playfair Display', serif;
       color: #2c2c2c;
-      transition: background-color 0.3s ease, color 0.3s ease;
       overflow-y: scroll;
       scroll-behavior: smooth;
       background-color: #faf7f2;
@@ -28,13 +27,6 @@
 
     body::-webkit-scrollbar {
       display: none;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        color: #e8e4dc;
-        background-color: #1e1e1e;
-      }
     }
 
     .noise {
@@ -59,12 +51,6 @@
       100% { transform: translate(0, 0); }
     }
 
-    @media (prefers-color-scheme: dark) {
-      .noise {
-        opacity: 0.06;
-      }
-    }
-
     .header {
       position: fixed;
       top: 0;
@@ -77,13 +63,6 @@
       align-items: center;
       flex-direction: column;
       background-color: #faf7f2;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .header {
-        background-color: #1e1e1e;
-      }
     }
 
     .header-top {
@@ -110,26 +89,12 @@
       opacity: 1;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .header .logo {
-        color: #b0a8a0;
-        opacity: 1;
-      }
-    }
-
     .header-line {
       width: 100%;
       height: 1px;
       background: #a89888;
       opacity: 0.15;
       margin-top: 0.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .header-line {
-        background: #8a8a8a;
-        opacity: 0.2;
-      }
     }
 
     .page-wrapper {
@@ -160,13 +125,6 @@
       opacity: 0.8;
       user-select: none;
       margin-bottom: 0.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .form-title {
-        color: #c0b8b0;
-        opacity: 1;
-      }
     }
 
     .form-group {
@@ -203,16 +161,6 @@
       -moz-appearance: textfield;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .form-group input {
-        color: #c0b8b0;
-        border-bottom-color: rgba(192, 184, 176, 0.15);
-      }
-      .form-group input:focus {
-        border-bottom-color: rgba(192, 184, 176, 0.4);
-      }
-    }
-
     .agree-text {
       font-family: 'Cutive Mono', 'Courier New', monospace;
       font-size: 0.7rem;
@@ -238,20 +186,6 @@
       border-color: rgba(106, 90, 74, 0.4);
     }
 
-    @media (prefers-color-scheme: dark) {
-      .agree-text {
-        color: #c0b8b0;
-        opacity: 1;
-      }
-      .agree-text .rules-link {
-        color: #c0b8b0;
-        border-color: rgba(192, 184, 176, 0.15);
-      }
-      .agree-text .rules-link:hover {
-        border-color: rgba(192, 184, 176, 0.4);
-      }
-    }
-
     .submit-btn {
       font-family: 'Cutive Mono', 'Courier New', monospace;
       font-size: 0.85rem;
@@ -272,16 +206,6 @@
     .submit-btn:hover {
       opacity: 1;
       border-color: rgba(106, 90, 74, 0.5);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .submit-btn {
-        color: #c0b8b0;
-        border-color: rgba(192, 184, 176, 0.2);
-      }
-      .submit-btn:hover {
-        border-color: rgba(192, 184, 176, 0.5);
-      }
     }
 
     .rules-side {
@@ -336,20 +260,6 @@
       position: absolute;
       left: 0;
       opacity: 0.2;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .rules-side {
-        border-left-color: rgba(192, 184, 176, 0.08);
-      }
-      .rules-side-title {
-        color: #c0b8b0;
-        opacity: 1;
-      }
-      .rules-side ul li {
-        color: #c0b8b0;
-        opacity: 1;
-      }
     }
 
     @media (max-width: 768px) {
@@ -450,7 +360,7 @@
           отправляя заявку вы соглашаетесь с <span class="rules-link" id="rulesScroll">правилами сервера</span>
         </div>
         <div class="agree-text">
-          &nbsp
+          &nbsp;
         </div>
         <button type="submit" class="submit-btn" id="submitBtn">отправить</button>
       </form>
