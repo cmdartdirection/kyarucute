@@ -234,6 +234,78 @@
       border-color: rgba(106, 90, 74, 0.5);
     }
 
+    /* ─── ПОДВАЛ ─── */
+    .section-footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 24vh;
+      width: 100vw;
+      flex-shrink: 0;
+      padding: 1.2rem 1.2rem;
+      gap: 0.8rem;
+      background-color: #f0ebe3;
+    }
+
+    .footer-title {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: #6a5a4a;
+      opacity: 0.6;
+      user-select: none;
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.3rem;
+    }
+
+    .footer-links a {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #6a5a4a;
+      opacity: 0.4;
+      text-decoration: none;
+      transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.9;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── УВЕДОМЛЕНИЕ ─── */
+    .toast {
+      position: fixed;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: #6a5a4a;
+      background-color: #f0ebe3;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2px;
+      border: 1px solid rgba(106, 90, 74, 0.1);
+      opacity: 0;
+      transition: bottom 0.4s ease, opacity 0.4s ease;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .toast.show {
+      bottom: 2rem;
+      opacity: 1;
+    }
+
     @media (max-width: 480px) {
       .header {
         padding: 0.6rem 0.8rem 0.4rem 0.8rem;
@@ -273,11 +345,36 @@
       .minecraft-desc {
         font-size: 0.8rem;
       }
+      .section-footer {
+        height: 40vh;
+        padding: 1.2rem 0.8rem;
+        align-items: flex-start;
+      }
+      .footer-title {
+        font-size: 1rem;
+      }
+      .footer-links a {
+        font-size: 0.85rem;
+      }
+      .footer-links {
+        align-items: flex-start;
+      }
+      .toast {
+        font-size: 0.75rem;
+        padding: 0.5rem 1.2rem;
+        bottom: -60px;
+      }
+      .toast.show {
+        bottom: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="noise"></div>
+
+  <!-- УВЕДОМЛЕНИЕ -->
+  <div class="toast" id="toast">скопировано</div>
 
   <header class="header">
     <div class="header-top">
@@ -308,5 +405,43 @@
     </div>
     <a href="minecraft.html" class="minecraft-btn">подать заявку</a>
   </section>
+
+  <!-- ─── ПОДВАЛ ─── -->
+  <section class="section-footer" id="contacts">
+    <div class="footer-title">контакты</div>
+    <div class="footer-links">
+      <a href="https://t.me/ProdByKyaru" target="_blank">telegram</a>
+      <a href="https://soundcloud.com/kyaru_cute" target="_blank">soundcloud</a>
+      <a href="https://discord.gg/A6wDSypJP" target="_blank">discord</a>
+      <a href="#" onclick="copyToClipboard('cmdartdirection@gmail.ru'); return false;">cmdartdirection@gmail.ru</a>
+    </div>
+  </section>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('скопировано');
+      }).catch(() => {
+        // fallback для старых браузеров
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast('скопировано');
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1500);
+    }
+  </script>
 </body>
 </html>
