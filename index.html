@@ -177,6 +177,66 @@
       opacity: 0.8;
     }
 
+    /* ─── СЕКЦИЯ 3: ИСТОКИ (ТЕПЕРЬ ПЕРВАЯ) ─── */
+    .section-istoki {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100vh;
+      width: 100vw;
+      flex-shrink: 0;
+      padding: 2rem 1.2rem;
+      gap: 1rem;
+      background-color: #faf7f2;
+      text-align: right;
+    }
+
+    .istoki-title {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: #6a5a4a;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    .istoki-desc {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: #6a5a4a;
+      opacity: 0.5;
+      max-width: 600px;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .istoki-btn {
+      font-family: 'Cutive Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #6a5a4a;
+      opacity: 0.5;
+      background: none;
+      border: 1px solid rgba(106, 90, 74, 0.2);
+      padding: 0.6rem 1.8rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .istoki-btn:hover {
+      opacity: 0.9;
+      border-color: rgba(106, 90, 74, 0.5);
+    }
+
+    /* ─── СЕКЦИЯ 4: МАЙНКРАФТ (ТЕПЕРЬ ВТОРАЯ) ─── */
     .section-minecraft {
       display: flex;
       flex-direction: column;
@@ -187,7 +247,7 @@
       flex-shrink: 0;
       padding: 2rem 1.2rem;
       gap: 1rem;
-      background-color: #faf7f2;
+      background-color: #fcf9f5;
     }
 
     .minecraft-title {
@@ -241,7 +301,7 @@
       justify-content: flex-start;
       width: 100vw;
       flex-shrink: 0;
-      padding: 1.2rem;        /* ← одинаковые отступы со всех сторон */
+      padding: 1.2rem;
       gap: 0.8rem;
       background-color: #f0ebe3;
     }
@@ -280,7 +340,6 @@
       letter-spacing: 0.08em;
     }
 
-    /* ─── УВЕДОМЛЕНИЕ ─── */
     .toast {
       position: fixed;
       bottom: -80px;
@@ -334,6 +393,19 @@
         padding: 1.2rem 0.8rem;
         gap: 0.6rem;
       }
+      .section-istoki {
+        padding: 1.2rem 0.8rem;
+        gap: 0.8rem;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .istoki-title {
+        font-size: 1.4rem;
+      }
+      .istoki-desc {
+        font-size: 0.8rem;
+        text-align: left;
+      }
       .section-minecraft {
         padding: 1.2rem 0.8rem;
         gap: 0.8rem;
@@ -345,7 +417,6 @@
         font-size: 0.8rem;
       }
       .section-footer {
-        height: 40vh;
         padding: 1.2rem 0.8rem;
         align-items: flex-start;
       }
@@ -372,7 +443,6 @@
 <body>
   <div class="noise"></div>
 
-  <!-- УВЕДОМЛЕНИЕ -->
   <div class="toast" id="toast">скопировано</div>
 
   <header class="header">
@@ -392,10 +462,21 @@
   <section class="section-projects" id="projects">
     <div class="projects-title">проекты</div>
     <ul class="projects-list">
+      <li onclick="document.getElementById('istoki').scrollIntoView({ behavior: 'smooth' })">• истоки (мини-альбом)</li>
       <li onclick="document.getElementById('minecraft').scrollIntoView({ behavior: 'smooth' })">• майнкрафт сервер (подать заявку)</li>
     </ul>
   </section>
 
+  <!-- СЕКЦИЯ 3: ИСТОКИ (ТЕПЕРЬ ПЕРВАЯ) -->
+  <section class="section-istoki" id="istoki">
+    <div class="istoki-title">истоки</div>
+    <div class="istoki-desc">
+      мини-альбом, который появится здесь<br>
+    </div>
+    <a href="#" class="istoki-btn">скоро</a>
+  </section>
+
+  <!-- СЕКЦИЯ 4: МАЙНКРАФТ (ТЕПЕРЬ ВТОРАЯ) -->
   <section class="section-minecraft" id="minecraft">
     <div class="minecraft-title">майнкрафт сервер</div>
     <div class="minecraft-desc">
@@ -405,13 +486,12 @@
     <a href="minecraft.html" class="minecraft-btn">подать заявку</a>
   </section>
 
-  <!-- ─── ПОДВАЛ ─── -->
   <section class="section-footer" id="contacts">
     <div class="footer-title">контакты</div>
     <div class="footer-links">
       <a href="https://t.me/ProdByKyaru" target="_blank">telegram</a>
       <a href="https://soundcloud.com/kyaru_cute" target="_blank">soundcloud</a>
-      <a href="https://discord.gg/bMaj7wzFNH" target="_blank">discord</a>
+      <a href="https://discord.gg/A6wDSypJP" target="_blank">discord</a>
       <a href="#" onclick="copyToClipboard('cmdartdirection@gmail.ru'); return false;">cmdartdirection@gmail.ru</a>
     </div>
   </section>
@@ -421,7 +501,6 @@
       navigator.clipboard.writeText(text).then(() => {
         showToast('скопировано');
       }).catch(() => {
-        // fallback для старых браузеров
         const input = document.createElement('input');
         input.value = text;
         document.body.appendChild(input);
