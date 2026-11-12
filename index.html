@@ -88,11 +88,34 @@
       width: 100vw;
       flex-shrink: 0;
       background-color: #faf7f2;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-home::after {
+      content: '';
+      position: absolute;
+      inset: 0;
       background-image: url('mainpicback.png');
       background-size: 90%;
       background-position: center;
       background-repeat: no-repeat;
-      position: relative;
+      opacity: 0;
+      transform: scale(1.06);
+      animation: homeImageReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes homeImageReveal {
+      from {
+        opacity: 0;
+        transform: scale(1.06);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .section-home::before {
@@ -150,6 +173,9 @@
       padding: 2rem 1.2rem;
       gap: 0.8rem;
       background-color: #fcf9f5;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
 
     .projects-title {
@@ -202,6 +228,16 @@
       text-align: right;
     }
 
+    .section-istoki:nth-of-type(even) {
+      align-items: flex-start;
+      text-align: left;
+      background-color: #fcf9f5;
+    }
+
+    .section-istoki:nth-of-type(even) .istoki-desc {
+      text-align: left;
+    }
+
     .istoki-title {
       font-family: 'Cutive Mono', 'Courier New', monospace;
       font-size: 2.2rem;
@@ -241,74 +277,28 @@
       display: inline-block;
     }
 
+    .istoki-btn[aria-disabled="true"] {
+      cursor: default;
+    }
+
     .istoki-btn:hover {
       opacity: 0.9;
       border-color: rgba(106, 90, 74, 0.5);
     }
 
-    .section-minecraft {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100vw;
-      flex-shrink: 0;
-      padding: 2rem 1.2rem;
-      gap: 1rem;
-      background-color: #fcf9f5;
+    @media (prefers-reduced-motion: reduce) {
+      .section-home::after {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
     }
 
-    .minecraft-title {
-      font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: 2.2rem;
-      font-weight: 300;
-      letter-spacing: 0.06em;
-      color: #6a5a4a;
-      opacity: 0.6;
-      user-select: none;
-    }
-
-    .minecraft-desc {
-      font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: 0.95rem;
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      color: #6a5a4a;
-      opacity: 0.5;
-      max-width: 600px;
-      text-align: center;
-      line-height: 1.8;
-    }
-
-    .minecraft-btn {
-      font-family: 'Cutive Mono', 'Courier New', monospace;
-      font-size: 0.85rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: #6a5a4a;
-      opacity: 0.5;
-      background: none;
-      border: 1px solid rgba(106, 90, 74, 0.2);
-      padding: 0.6rem 1.8rem;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: opacity 0.3s ease, border-color 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .minecraft-btn:hover {
-      opacity: 0.9;
-      border-color: rgba(106, 90, 74, 0.5);
-    }
-
-    /* ─── ПОДВАЛ ─── */
     .section-footer {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-start;  /* ← прижимаем к верху */
+      align-items: flex-start;
       width: 100vw;
       flex-shrink: 0;
       padding: 1.2rem;
@@ -321,8 +311,8 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 0.4rem;
-      justify-content: flex-start;  /* ← контент внутри слева вверху */
-      align-self: flex-start;       /* ← сам блок прижат к верху */
+      justify-content: flex-start;
+      align-self: flex-start;
     }
 
     .footer-left .footer-title {
@@ -357,7 +347,7 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 0.3rem;
-      justify-content: flex-start;  /* ← ссылки тоже прижаты к верху */
+      justify-content: flex-start;
       align-self: flex-start;
     }
 
@@ -433,28 +423,14 @@
       .section-projects {
         padding: 1.2rem 0.8rem;
         gap: 0.6rem;
-      }
-      .section-istoki {
+      }      .section-istoki {
         padding: 1.2rem 0.8rem;
         gap: 0.8rem;
-        align-items: flex-start;
-        text-align: left;
       }
       .istoki-title {
         font-size: 1.4rem;
       }
       .istoki-desc {
-        font-size: 0.8rem;
-        text-align: left;
-      }
-      .section-minecraft {
-        padding: 1.2rem 0.8rem;
-        gap: 0.8rem;
-      }
-      .minecraft-title {
-        font-size: 1.4rem;
-      }
-      .minecraft-desc {
         font-size: 0.8rem;
       }
       .section-footer {
@@ -488,6 +464,11 @@
       }
     }
   </style>
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.addEventListener('pageshow', () => window.scrollTo(0, 0));
+  </script>
 </head>
 <body>
   <div class="noise"></div>
@@ -510,19 +491,36 @@
   <section class="section-projects" id="projects">
     <div class="projects-title">проекты</div>
     <ul class="projects-list">
-      <li onclick="document.getElementById('istoki').scrollIntoView({ behavior: 'smooth' })">• истоки (мини-альбом)</li>
+      <li onclick="document.getElementById('istoki').scrollIntoView({ behavior: 'smooth' })">• Истоки (мини-альбом)</li>
+      <li onclick="document.getElementById('eva').scrollIntoView({ behavior: 'smooth' })">• Eva (Локальный ассистент)</li>
+      <li onclick="document.getElementById('chrono').scrollIntoView({ behavior: 'smooth' })">• Chrono (Хроно-Википедия)</li>
     </ul>
   </section>
 
   <section class="section-istoki" id="istoki">
-    <div class="istoki-title">истоки</div>
+    <div class="istoki-title">Истоки</div>
     <div class="istoki-desc">
-      мини-альбом, который появится здесь.<br>
+      Мини-альбом, который появится здесь.<br>
     </div>
-    <a href="#" class="istoki-btn">скоро</a>
+    <span class="istoki-btn" aria-disabled="true">Скоро</span>
   </section>
 
-  <!-- ─── ПОДВАЛ ─── -->
+  <section class="section-istoki" id="eva">
+    <div class="istoki-title">Eva</div>
+    <div class="istoki-desc">
+      Локальный мультимодальный ассистент с function calling, retrieval-памятью и изолированным code-generation агентом.
+    </div>
+    <span class="istoki-btn" aria-disabled="true">Подробнее</span>
+  </section>
+
+  <section class="section-istoki" id="chrono">
+    <div class="istoki-title">Chrono</div>
+    <div class="istoki-desc">
+      Нативное приложение для macOS для авторов. Предназначено для организации сложного мира и его истории.
+    </div>
+    <span class="istoki-btn" aria-disabled="true">Подробнее</span>
+  </section>
+
   <section class="section-footer" id="contacts">
     <div class="footer-left">
       <div class="footer-title">контакты и авторы</div>
@@ -534,9 +532,9 @@
 
     <div class="footer-right">
       <div class="footer-links">
-        <a href="https://t.me/ProdByKyaru" target="_blank">telegram</a>
+        <a href="https://t.me/KyaruCute" target="_blank">telegram</a>
         <a href="https://soundcloud.com/kyaru_cute" target="_blank">soundcloud</a>
-        <a href="https://discord.gg/A6wDSypJP" target="_blank">discord</a>
+        <a href="https://discord.gg/bMaj7wzFNH" target="_blank">discord</a>
         <a href="#" onclick="copyToClipboard('main@kyarucute.ru'); return false;">main@kyarucute.ru</a>
       </div>
     </div>
